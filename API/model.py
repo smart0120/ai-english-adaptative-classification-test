@@ -70,10 +70,11 @@ class Model:
         :return:
         """
         self.model.load(path)
-    def predict(self, scores=[0, 0, 0]):
+    def predict(self, scores=None):
         """
         Returns a student level given his/her grades.
         :param scores: Grades of a student.
         :return: The level of the student. It's a number from 0-9. 0: Lowest level. 9: Highest level.
         """
+        scores = [0, 0, 0] if scores is None else scores
         return np.array(self.model.predict(scores)).argmax(axis=1)
